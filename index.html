@@ -11,7 +11,31 @@
    <div class="container">
     <h1>Tax Calculator</h1>
     <form id="taxForm">
-        
+        <label for="income">Enter Gross Annual Income:</label>
+        <div class="input-container">
+            <input type="text" id="income" name="income" required>
+            <span class="error-icon" id="incomeError"></span>
+        </div>
+        <label for="extraIncome">Enter Extra Income:</label>
+        <div class="input-container">
+            <input type="text" id="extraIncome" name="extraIncome" value="0">
+            <span class="error-icon" id="extraIncomeError"></span>
+        </div>
+        <label for="age">Enter Age group:</label>
+        <div class="input-container">
+            <select id="age" name="age" required>
+                <option value="<40">&lt; 40</option>
+                <option value=">=40&<60">&ge; 40 &lt; 60</option>
+                <option value=">=60">&ge; 60</option>
+            </select>
+            <span class="error-icon" id="ageError"></span>
+        </div>
+        <label for="deductions">Enter total applicable Deductions:</label>
+        <div class="input-container">
+            <input type="text" id="deductions" name="deductions" >
+            <span class="error-icon" id="deductionsError"></span>
+        </div>
+       
     </form>
    </div>
     <script src="script/script.js"></script>
