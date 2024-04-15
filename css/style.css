@@ -24,3 +24,12 @@ label {
     position: relative;
     width: 100%;
 }
+
+input[type="number"],
+select {
+    width: calc(100% - 30px); /* Subtract width of error icon */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
