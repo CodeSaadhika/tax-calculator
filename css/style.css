@@ -65,6 +65,25 @@ button:hover {
     right: 5px;
     transform: translateY(-50%);
 }
+/* Tooltip */
+.tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    left: calc(100% + 5px);
+}
+
+/* Show tooltip on hover */
+.input-container:hover .error-icon:hover + .tooltip {
+    visibility: visible;
+}
 
 .input-error .error-icon {
     display: block;
