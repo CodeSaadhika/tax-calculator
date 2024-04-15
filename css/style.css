@@ -12,3 +12,15 @@ body {
    border-radius: 5px;
 }
 
+h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+.input-container {
+    position: relative;
+    width: 100%;
+}
