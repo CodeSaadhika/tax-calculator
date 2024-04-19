@@ -41,8 +41,7 @@ document.getElementById('taxForm').addEventListener('submit', function(event) {
         var income = parseFloat(incomeInput.value);
         var extraIncome = parseFloat(extraIncomeInput.value);
         var deductions = parseFloat(deductionsInput.value);
-        var age = ageInput.value;
-
+        var age = determineAgeGroup(parseInt(ageInput.value)); // Determine age group
         var totalIncome = income + extraIncome - deductions;
 
         var tax = calculateTax(totalIncome, age);
@@ -51,32 +50,57 @@ document.getElementById('taxForm').addEventListener('submit', function(event) {
     }
 });
 
-function calculateTax(income, age) {
+
+function calculateTax(income, ageGroup) {
     var tax = 0;
 
-    // If income is less than or equal to 8 lakhs, no tax
-    if (income <= 800000) {
-        return tax;
+    if (ageGroup === "Less than 60") {
+        if (income <= 300000) {
+            tax = 0;
+        } else if (income > 300000 && income <= 600000) {
+            tax = (income - 300000) * 0.05;
+        } else if (income > 600000 && income <= 900000) {
+            tax = 15000 + (income - 600000) * 0.1;
+        } else if (income > 900000 && income <= 1200000) {
+            tax = 45000 + (income - 900000) * 0.15;
+        } else if (income > 1200000 && income <= 1500000) {
+            tax = 90000 + (income - 1200000) * 0.2;
+        } else {
+            tax = 150000 + (income - 1500000) * 0.3;
+        }
+    } else if (ageGroup === "60-80 yrs") {
+        if (income <= 300000) {
+            tax = 0;
+        } else if (income > 300000 && income <= 600000) {
+            tax = (income - 300000) * 0.05;
+        } else if (income > 600000 && income <= 900000) {
+            tax = 15000 + (income - 600000) * 0.1;
+        } else if (income > 900000 && income <= 1200000) {
+            tax = 45000 + (income - 900000) * 0.15;
+        } else if (income > 1200000 && income <= 1500000) {
+            tax = 90000 + (income - 1200000) * 0.2;
+        } else {
+            tax = 150000 + (income - 1500000) * 0.3;
+        }
+    } else if (ageGroup === "Above 80 yrs") {
+        if (income <= 300000) {
+            tax = 0;
+        } else if (income > 300000 && income <= 600000) {
+            tax = (income - 300000) * 0.05;
+        } else if (income > 600000 && income <= 900000) {
+            tax = 15000 + (income - 600000) * 0.1;
+        } else if (income > 900000 && income <= 1200000) {
+            tax = 45000 + (income - 900000) * 0.15;
+        } else if (income > 1200000 && income <= 1500000) {
+            tax = 90000 + (income - 1200000) * 0.2;
+        } else {
+            tax = 150000 + (income - 1500000) * 0.3;
+        }
     }
-
-    // Tax calculation for income over 8 lakhs
-    var taxableIncome = income - 800000; // Calculate income over 8 lakhs
-
-    // Determine tax rate based on age
-    var taxRate;
-    if (age === "<40") {
-        taxRate = 0.3; // 30% tax rate for age < 40
-    } else if (age === ">=40&<60") {
-        taxRate = 0.4; // 40% tax rate for age ≥ 40 but < 60
-    } else {
-        taxRate = 0.1; // 10% tax rate for age ≥ 60
-    }
-
-    // Calculate tax amount
-    tax = taxableIncome * taxRate;
 
     return tax;
 }
+
 
 function showError(input) {
     input.parentElement.classList.add('input-error');
@@ -84,4 +108,14 @@ function showError(input) {
 
 function hideError(input) {
     input.parentElement.classList.remove('input-error');
+}
+
+function determineAgeGroup(age) {
+    if (age < 60) {
+        return "Less than 60";
+    } else if (age >= 60 && age < 80) {
+        return "60-80 yrs";
+    } else {
+        return "Above 80 yrs";
+    }
 }
